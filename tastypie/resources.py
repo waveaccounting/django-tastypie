@@ -3,7 +3,12 @@ import logging
 import warnings
 import django
 from django.conf import settings
-from django.conf.urls.defaults import patterns, url
+
+try:
+    from django.conf.urls import patterns, url, include
+except ImportError: # Django < 1.4
+    from django.conf.urls.defaults import patterns, url, include
+
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned, ValidationError
 from django.core.urlresolvers import NoReverseMatch, reverse, resolve, Resolver404, get_script_prefix
 from django.db import transaction
@@ -394,7 +399,7 @@ class Resource(object):
             deserialized = request.POST.copy()
             deserialized.update(request.FILES)
         else:
-            deserialized = self._meta.serializer.deserialize(request.raw_post_data, format=format)
+            deserialized = self._meta.serializer.deserialize(request.body, format=format)
 
         return deserialized
 
