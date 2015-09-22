@@ -32,7 +32,7 @@ if 'django.contrib.auth' in settings.INSTALLED_APPS:
     
     class ApiKey(models.Model):
         user = models.OneToOneField(User, related_name='api_key')
-        key = models.CharField(max_length=256, blank=True, default='', db_index=True)
+        key = models.CharField(max_length=128, blank=True, default='', db_index=True)
         created = models.DateTimeField(default=now)
 
         def __unicode__(self):

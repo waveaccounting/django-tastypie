@@ -66,7 +66,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'ApiKey'},
             'created': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2012, 11, 5, 0, 0)'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'key': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '256', 'db_index': 'True', 'blank': 'True'}),
+            'key': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '128', 'db_index': 'True', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'related_name': "'api_key'", 'unique': 'True', 'to': "orm['auth.User']"})
         }
     }
